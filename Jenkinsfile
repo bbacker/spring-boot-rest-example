@@ -29,7 +29,7 @@ agent { label 'master'}
         sh '''
         aws ecr get-login --no-include-email --region us-west-2 > ./login
         . ./login
-        docker tag bbacker/sbdemo:${BUILD_ID} 589011911289.dkr.ecr.us-west-2.amazonaws.com/bbtest:${BUILD_ID}
+        docker tag sbdemo:${BUILD_ID} 589011911289.dkr.ecr.us-west-2.amazonaws.com/bbtest:${BUILD_ID}
         docker push "589011911289.dkr.ecr.us-west-2.amazonaws.com/bbtest:${BUILD_ID}"
         '''
     }
