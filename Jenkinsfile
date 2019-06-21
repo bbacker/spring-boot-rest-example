@@ -23,10 +23,10 @@ pipeline {
       archive 'target/*.war'
    }
    stage('Dockerbuild') {
-        docker build -t sbdemo:${env.BUILD_ID}
+        sh "docker build -t sbdemo:${env.BUILD_ID}"
    //    customImage.push()
 
-        sh -x push_image.sh ${env.BUILD_ID}
+        sh " push_image.sh ${env.BUILD_ID}"
    }
  }
 }
