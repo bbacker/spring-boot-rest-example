@@ -1,5 +1,6 @@
 // first use poc-jenkins.ep.corp
 pipeline {
+agent { label 'master'}
 
  stages {
    stage('check out') {
