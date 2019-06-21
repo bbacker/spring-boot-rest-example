@@ -26,6 +26,15 @@ agent { label 'master'}
         sh "cd spring-boot-rest-example; docker build -t sbdemo:${BUILD_ID} ."
 //        sh " push_image.sh ${BUILD_ID}"
 
+/* TODO: change to form using jenkins creds
+  https://wiki.jenkins.io/display/JENKINS/Amazon+ECR
+
+  stage 'Docker push'
+  docker.withRegistry('https://1234567890.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:demo-ecr-credentials') {
+    docker.image('demo').push('latest')
+  }
+*/
+
         sh '''
         aws ecr get-login --no-include-email --region us-west-2 > ./login
         . ./login
