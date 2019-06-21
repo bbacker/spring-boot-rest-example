@@ -23,14 +23,14 @@ agent { label 'master'}
    }
    stage('Dockerbuild') {
     steps {
-        sh "cd spring-boot-rest-example; docker build -t sbdemo:${env.BUILD_ID} ."
-//        sh " push_image.sh ${env.BUILD_ID}"
+        sh "cd spring-boot-rest-example; docker build -t sbdemo:${BUILD_ID} ."
+//        sh " push_image.sh ${BUILD_ID}"
 
         sh '''
         aws ecr get-login --no-include-email --region us-west-2 > ./login
         . ./login
-        docker tag bbacker/sbdemo:${env.BUILD_ID} 589011911289.dkr.ecr.us-west-2.amazonaws.com/bbtest:${env.BUILD_ID}
-        docker push 589011911289.dkr.ecr.us-west-2.amazonaws.com/bbtest:${env.BUILD_ID}
+        docker tag bbacker/sbdemo:${BUILD_ID} 589011911289.dkr.ecr.us-west-2.amazonaws.com/bbtest:${BUILD_ID}
+        docker push "589011911289.dkr.ecr.us-west-2.amazonaws.com/bbtest:${BUILD_ID}"
         '''
     }
    }
