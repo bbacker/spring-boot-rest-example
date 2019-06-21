@@ -6,7 +6,14 @@ agent { label 'master'}
    stage('check out') {
     steps {
          sh "echo crude way without jenkins creds"
-         sh "git clone https://github.com/bbacker/spring-boot-rest-example"
+         sh '''
+            if [ -e spring-boot-rest-example ] ;
+            then
+                git pull spring-boot-rest-example
+            else
+                git clone https://github.com/bbacker/spring-boot-rest-example
+            fi
+            '''
     }
    }
    stage('Build') {
